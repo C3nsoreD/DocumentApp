@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import os
 
 from pathlib import Path
 
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'UniqueDoc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,10 +82,22 @@ DATABASES = {
     }
 }
 
+# Postgres Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'DocumentV',
+#         'USER': 'admin',
+#         'PASSWORD':'doc_dev_test',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
+#     }
+# }
+
+
 # Authentication System
 # Using a custom user model
 AUTH_USER_MODEL = 'Auth.User'
-
 
 
 # Password validation
@@ -124,3 +137,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Tempalate files
