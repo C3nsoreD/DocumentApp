@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Auth.apps.AuthConfig'
+    'Auth.apps.AuthConfig',
+    'core.apps.CoreConfig'
 ]
 
 MIDDLEWARE = [
@@ -144,4 +145,6 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'
 # Tempalate files

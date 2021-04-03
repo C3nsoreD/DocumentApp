@@ -3,4 +3,15 @@
 {% block content %}
   <h1> This is the index page </h1>
   <p>Page visits: {{ visits }}</p>
+  <h4>Upload files below</h4>
+  <form class="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="fileobj">
+    <button type="submit" name="button">Upload</button>
+  </form>
+
+  {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %}
+
 {% endblock %}
