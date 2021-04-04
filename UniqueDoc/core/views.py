@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 
 from .forms import DocumentForm
+from .utils.storage import CustomStorage
+
 
 # helper function for collecting serverside cookie.
 def get_serverside_cookie(request, cookie, default_val=None):
@@ -35,22 +37,27 @@ def index(request):
     # request.set_test_cookie()
     visitor_cookie_counter(request)
     context_dict['visits'] = request.session['visits']
+
     if request.method == 'POST' and request.FILES['fileobj']:
-        # form = DocumentForm(request.POST, request.FILES)
-        file_obj = request.FILES['fileobj']
-        fs = FileSystemStorage()
-        fs.save(file_obj.name, file_obj)
-        uploaded_file_url = fs.url
-        print(request)
+        if request.user.is_authenticated:
+            form = DocumentForm(request.POST, file=request.FILES['fileobj'])
+            # file_obj = request.FILES['fileobj']
 
-        context_dict['uploaded_file_url'] = uploaded_file_url
-
-        return render(request, 'core/index.html', context_dict)
-    #     if form.is_valid():
-    #         form.save()
-    #         print(request)
-    # else:
-        # form = DocumentForm()
-
+        # fs = FileSystemStorage()
+        # fs.save(file_obj.name, file_obj)
+        # uploaded_file_url = fs.url
+        # print(request)
+        #
+        # context_dict['uploaded_file_url'] = uploaded_file_url
+        #
+        # return render(request, 'core/index.html', context_dict)
+        # custom_fs = CustomStorage(file_obj)
+        # uploaded_file_url = custom_fs.
+        if form.is_valid():
+            form.save()
+            print(request)
+    else:
+        form = DocumentForm()
+    context_dict['form'] = form
     # response = render(request, 'core/index.html', context_dict)
     return render(request, 'core/index.html', context_dict)
