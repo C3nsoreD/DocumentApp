@@ -1,0 +1,6 @@
+# Random git ignores
+uploads/
+__pycache__/
+
+*.json
+*.pdf

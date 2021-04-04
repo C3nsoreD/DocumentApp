@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2> User login page </h2>
+  <div class="login">
+    {% if registered %}
+    <p> Thank you for registering with us </p>
+    {% else %}
+    <form id="login_form" method="POST" action="{% url 'auth:login' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      Email: <input type="text" name="email" placeholder="Email">
+      Password <input type="password" name="password" placeholder="Password">
+      <br/>
+      <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+  </div>
+
+
+{% endblock %}

@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth.models import (AbstractBaseUser)
+from django.contrib.auth.models import UserManager
 
 from django.db import models
 
@@ -16,6 +17,8 @@ class User(AbstractBaseUser):
     updated_on = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
+
+    objects = UserManager()
 
     def __str__(self):
 

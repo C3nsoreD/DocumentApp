@@ -1,5 +1,8 @@
-from django.shortcuts import render
 
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
 from .models import User
 from .forms import UserForm
@@ -28,3 +31,30 @@ def register(request):
         {'user_form': user_form,
         'registered': registered}
     )
+
+def login_user(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+
+        user = authenticate(email=email, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse("Your account is not active")
+        else:
+            print(f"Invalid {email} {password}")
+            return HttpResponse("Bad login credentials!")
+    else:
+        return render(
+            request,
+            'Auth/login.html',
+            {}
+        )
+
+def profile(request):
+    if request.user.is_authenticated:
+        email = request.user.email
+        return HttpResponse("This is the")
