@@ -1,6 +1,7 @@
 # Random git ignores
 uploads/
 __pycache__/
+node_modules/
 
 *.json
 *.pdf
