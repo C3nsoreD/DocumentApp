@@ -37,7 +37,7 @@ def index(request):
     context = {}
     visitor_cookie_counter(request)
     context['visits'] = request.session['visits']
-    return render(request, 'core/index.html', context)
+    return render(request, 'doc/index.html', context)
 
 def upload_document(request):
     context = {}
