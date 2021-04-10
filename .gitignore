@@ -1,7 +1,8 @@
 # Random git ignores
-uploads/
-__pycache__/
-node_modules/
+Document_verifier/apps/uploads/
+Document_verifier/__pycache__/
+
+env/
 
 *.json
 *.pdf
