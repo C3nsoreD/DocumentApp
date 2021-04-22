@@ -1,4 +1,4 @@
-(function($, Backbone, _, app) {
+(function($, backbone, _, app) {
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'home'
@@ -26,4 +26,4 @@
 
   app.router = AppRouter;   // Attached router to app making it avaiable to the project
 
-})(JQuery, Backbone, _, app);
+})(jQuery, backbone, _, app);

@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
+from rest_framework import viewsets
+
 from .models import User
 from .forms import UserForm
 

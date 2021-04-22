@@ -17,12 +17,11 @@ class User(AbstractBaseUser):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
-    documents = models.ManyToManyField('doc.Document')
+    # documents = models.ManyToManyField('doc.Document')
 
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
 
     def __str__(self):
-
         return self.email

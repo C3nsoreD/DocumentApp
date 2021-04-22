@@ -6,27 +6,17 @@
     <title>Document Verification Service</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <header class="page-header">
-      <div class="container">
-        <div class="row">
-          {% if messages %}
-          <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{message.tags}}" {% endif %}> {{message}}</li>
-            <ul>
-              {% endfor %}
-              {% endif %}
-
-            </div>
-      </div>
-    </header>
     <script type="text/html" id="home-template">
       <h1> Welcome to Document Management Application</h1>
     </script>
 
-    <script src="{% static 'js/vendor/jquery.js' %}"></script>
-    <script src="{% static 'js/vendor/underscore.js' %}"></script>
-    <script src="{% static 'js/vendor/backbone.js' %}"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+
+    <script src="{% static 'js/vendor/jQuery.js' %}" type="module"></script>
+    <script src="{% static 'js/vendor/underscore.js' %}" type="module"></script>
+    <script src="{% static 'js/vendor/backbone.js' %}" type="module"></script>
     <script id="config" type="text/json">
       {
         "models": {},
@@ -39,12 +29,12 @@
     <script src="{% static 'js/models.js' %}"></script>
     <script src="{% static 'js/views.js' %}"></script>
     <script src="{% static 'js/router.js' %}"></script>
-  </head>
-  <body>
 
-    <div id="content"></div>
-    {% block content %}
-    {% endblock %}
+    <!-- <h1> Welcome to DMS </h1>
+    <p>Page visits: {{ visits }}</p>
+    <p>This server generates docs provided by the users upon request.</p>
+    <p>Using this service anyone with permission can request for a user's documents</p>
+    <p>The documents are encoded with certificates to show ther authenticity.</p> -->
 
 
   </body>

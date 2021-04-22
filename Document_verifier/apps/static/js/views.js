@@ -3,9 +3,9 @@
 // `https://blog.mgechev.com/2012/08/29/self-invoking-functions-in-javascript-or-immediately-invoked-function-expression/`
 (function ($, Backbone, _, app) {
   var HomepageView = Backbone.View.extend({
-    templateName: '#Home-template',
+    templateName: '#home-template',
     intiailze: function() {
-      this.template = _.template($this.templateName).html());
+      this.template = _.template($this.templateName).html();
     },
     render: function() {
       var context = this.getContext(),
@@ -18,4 +18,4 @@
   });
   app.views.HomepageView = HomepageView;
 
-})(JQuery, Backbone, _, app);
+})(jQuery, Backbone, _, app);
