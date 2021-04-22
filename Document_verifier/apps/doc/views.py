@@ -54,7 +54,7 @@ def upload_document(request):
                 form = DocumentForm()
         context['form'] = form
     print(request)
-    return render(request, 'core/upload-doc.html', context)
+    return render(request, 'doc/upload-doc.html', context)
 
 def view_document(request):
     buffer = io.BytesIO()
