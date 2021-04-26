@@ -1,7 +1,7 @@
 import io
 from datetime import datetime
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse, FileResponse
 from django.core.files.storage import FileSystemStorage
@@ -9,6 +9,7 @@ from reportlab.pdfgen import canvas
 
 from .forms import DocumentForm
 from .utils.storage import CustomStorage
+from .models import Document
 
 
 # helper function for collecting serverside cookie.
@@ -65,3 +66,11 @@ def view_document(request):
 
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+def document_list_view(request):
+    docs = Document.objects.all()
+    return render(request, 'doc/list.html', {'docs': docs})
+
+def document_detail_view(request, title):
+    doc = get_object_or_404(Document, title=title)
+    return render(request, 'doc/detail.html', {'doc': doc})

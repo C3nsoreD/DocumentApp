@@ -8,6 +8,10 @@ def user_directory_path(instance, filename):
     return "user_{0}/{1}".format(instance.user.id, filename)
 
 # Document classification necessary for additional functionality
+class ClassificationManager(models.Manager):
+
+    def get_queryset(self, classification="unofficial"):
+        return super(ClassificationManager, self).get_queryset().filter(status=classification)
 
 class Document(models.Model):
     DOC_CLASS = [
@@ -32,8 +36,3 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
-
-class ClassificationManager(models.Manager):
-
-    def get_queryset(self, classification="unofficial"):
-        return super(ClassificationManager, self).get_queryset().filter(status=classification)

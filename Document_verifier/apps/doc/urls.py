@@ -9,5 +9,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     # path('', TemplateView.as_view(template_name='doc/index.html')),
     path('upload/', views.upload_document, name='upload'),
-    path('document/', views.view_document, name='view-document'),
+    path('document/<title>/', views.view_document, name='document-detail-view'),
+    path('documents/', views.document_list_view, name='document-list-view'),
+
 ]
