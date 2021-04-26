@@ -11,8 +11,8 @@ def user_directory_path(instance, filename):
 # Document classification necessary for additional functionality
 class ClassificationManager(models.Manager):
 
-    def get_queryset(self, classification="unofficial"):
-        return super(ClassificationManager, self).get_queryset().filter(status=classification)
+    def get_queryset(self, certification="unofficial"):
+        return super(ClassificationManager, self).get_queryset().filter(status=certification)
 
 class Document(models.Model):
     DOC_CLASS = [
@@ -25,7 +25,7 @@ class Document(models.Model):
     updated = models.DateTimeField(auto_now=True)
     file = models.FileField(upload_to='uploads/')
 
-    classification = models.CharField(max_length=10, choices=DOC_CLASS, default='unofficial')
+    certification = models.CharField(max_length=10, choices=DOC_CLASS, default='unofficial')
 
     owner_id = models.ForeignKey('Auth.User', on_delete=models.CASCADE, related_name='documents')
 

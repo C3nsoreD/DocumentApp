@@ -3,9 +3,7 @@ from django import forms
 from .models import Document
 
 
-class DocumentForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    file = forms.FileField()
+class DocumentForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ('title', 'description', 'classification' 'file',)
+        fields = ['title', 'description', 'certification', 'file']

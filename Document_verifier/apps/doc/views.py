@@ -43,29 +43,19 @@ def index(request):
 def upload_document(request):
     context = {}
     if request.method == 'POST' and request.FILES['fileobj']:
-        form = DocumentForm()
-        if request.user.is_authenticated:
-            form = DocumentForm(request.POST, file=request.FILES['fileobj'])
-            if form.is_valid():
-                # Save the file
-                messages.info(request, 'File uploaded successfully.')
-                form.save()
-                print(request)
-            else:
-                form = DocumentForm()
+        # form = DocumentForm()
+        # if request.user.is_authenticated:
+        form = DocumentForm(request.POST, file=request.FILES['fileobj'])
+        if form.is_valid():
+            # Save the file
+            messages.info(request, 'File uploaded successfully.')
+            form.save()
+            print(request)
+        else:
+            form = DocumentForm()
         context['form'] = form
-    print(request)
+    # print(request)
     return render(request, 'doc/upload-doc.html', context)
-
-# def view_document(request):
-#     buffer = io.BytesIO()
-#     p = canvas.Canvas(buffer)
-#     p.drawString(100, 100, "Hello World")
-#     p.showPage()
-#     p.save()
-#
-#     buffer.seek(0)
-#     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
 
 def document_list_view(request):
     docs = Document.objects.all()
