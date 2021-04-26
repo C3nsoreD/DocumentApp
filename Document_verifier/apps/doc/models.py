@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # from Auth.models import User
 
@@ -36,3 +37,6 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('apps.doc:doc', args=[self.objects.title])
